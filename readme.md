@@ -1,6 +1,4 @@
-<h1>Doctor Lookup</h1>
-
-<!--insert img here-->
+<img src="https://raw.githubusercontent.com/logmannn/DoctorLookup/master/src/img/site.png" alt="preview" />
 
 <h3>Setup Instructions</h3>
 <ul>
