@@ -8,11 +8,10 @@ $(document).ready(function() {
   console.log("API Key: "+process.env.exports.apiKey);
   $('.btn-success').click(function(event){
     event.preventDefault();
-    let search = $("#search").val();
+    const search = $("#search").val();
+    const name = $("#name").val();
     $(".output").empty();
-    // console.log(search);
-    let url = `https://api.betterdoctor.com/2016-03-01/doctors?query=${search}&location=37.773%2C-122.413%2C100&user_location=37.773%2C-122.413&skip=0&limit=10&user_key=${process.env.exports.apiKey}`;
-    // console.log(url);
+    const url = `https://api.betterdoctor.com/2016-03-01/doctors?name=${name}&query=${search}&location=37.773%2C-122.413%2C100&user_location=37.773%2C-122.413&skip=0&limit=10&user_key=${process.env.exports.apiKey}`;
     getItem(fetchResults, badResults, search, url)
   });
 });
@@ -22,7 +21,7 @@ let fetchResults = function(response, url){
 
   // console.log(items.data[0].profile.first_name);
   // console.log(items.data[0].profile.last_name);
-  console.log(items.data[0].practices[0].name);
+  // console.log(items.data[0].practices[0].name);
   let i = 0;
   items.data.forEach(function(item) {
     // let x = 0;
