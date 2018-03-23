@@ -3,7 +3,7 @@ import { getItem } from "../src/getItem.js";
 import $ from 'jquery';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
+//looking into google maps api
 $(document).ready(function() {
   console.log("API Key: "+process.env.exports.apiKey);
   $('.btn-success').click(function(event){
@@ -12,7 +12,7 @@ $(document).ready(function() {
     const name = $("#name").val();
     $(".output").empty();
     // 45.523062, -122.676482
-    const url = `https://api.betterdoctor.com/2016-03-01/doctors?name=${name}&query=${search}&location=45.523062%2C-122.676482%2C100&user_location=45.523062%2C-122.676482&skip=0&limit=10&user_key=${process.env.exports.apiKey}`;
+    const url = `https://api.betterdoctor.com/2016-03-01/doctors?name=${name}&query=${search}&location=45.523062%2C-122.676482%2C100&user_location=45.523062%2C-122.676482&skip=0&limit=20&user_key=${process.env.exports.apiKey}`;
     getItem(fetchResults, badResults, search, url)
   });
 });
