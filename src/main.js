@@ -18,37 +18,38 @@ $(document).ready(function() {
 });
 
 let fetchResults = function(response, url){
-
   $(".error").empty();
 
   let items = JSON.parse(response);
 
-  // Could not find website
-  let i = 0;
-  items.data.forEach(function(item) {
-    $(".doctoroutput").append("<b>Doctor</b>: <br>" + items.data[i].profile.first_name + " " + items.data[i].profile.last_name + "<br>");
+  if (items.data === undefined || items.data.length == 0) {
+    $(".error").html("This query doesn't include any doctors");
+  } else {
+    // Could not find website
+    let i = 0;
+    items.data.forEach(function(item) {
+      $(".doctoroutput").append("<b>Doctor</b>: <br>" + items.data[i].profile.first_name + " " + items.data[i].profile.last_name + "<br>");
 
-    let x = 0;
-    $(".doctoroutput").append("<b>Practice(s)</b>: <br>");
-    items.data[i].practices.forEach(function(item) {
-      $(".doctoroutput").append("Location: " + items.data[i].practices[x].name + "<br>Address: " + items.data[i].practices[x].visit_address.street + ", " + items.data[i].practices[x].visit_address.city + " " + items.data[i].practices[x].visit_address.state + ", " + items.data[i].practices[x].visit_address.zip + "<br>" + "Phone Number(s): <br>");
+      let x = 0;
+      $(".doctoroutput").append("<b>Practice(s)</b>: <br>");
+      items.data[i].practices.forEach(function(item) {
+        $(".doctoroutput").append("Location: " + items.data[i].practices[x].name + "<br>Address: " + items.data[i].practices[x].visit_address.street + ", " + items.data[i].practices[x].visit_address.city + " " + items.data[i].practices[x].visit_address.state + ", " + items.data[i].practices[x].visit_address.zip + "<br>" + "Phone Number(s): <br>");
 
-      let z = 0;
-      items.data[i].practices[x].phones.forEach(function(item) {
-        $(".doctoroutput").append(items.data[i].practices[x].phones[z].number + "<br>")
-        z += 1;
+        let z = 0;
+        items.data[i].practices[x].phones.forEach(function(item) {
+          $(".doctoroutput").append(items.data[i].practices[x].phones[z].number + "<br>")
+          z += 1;
+        });
+
+        $(".doctoroutput").append("Currently accepting patients? " + items.data[i].practices[x].accepts_new_patients + "<br>");
+
+        x += 1;
+        $(".doctoroutput").append("<br>");
       });
-
-      $(".doctoroutput").append("Currently accepting patients? " + items.data[i].practices[x].accepts_new_patients + "<br>");
-
-      x += 1;
-      $(".doctoroutput").append("<br>");
+      $(".doctoroutput").append("<hr><br>");
+      i += 1;
     });
-    $(".doctoroutput").append("<hr><br>");
-    i += 1;
-  });
-
-
+  }
 }
 
 let badResults = function(error){

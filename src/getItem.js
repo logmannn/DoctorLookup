@@ -21,6 +21,7 @@ function getItem(fetchResults, badResults, search, url){
 
     let body = JSON.parse(response);
     console.log(body);
+
     fetchResults(response, url);
   }, function(error) {
     badResults (error);
