@@ -18,6 +18,9 @@ $(document).ready(function() {
 });
 
 let fetchResults = function(response, url){
+
+  $(".error").empty();
+
   let items = JSON.parse(response);
 
   // Could not find website
@@ -49,5 +52,5 @@ let fetchResults = function(response, url){
 }
 
 let badResults = function(error){
-  $("#results").text("There was an error processing your request");
+  $(".error").html("There was an error processing your request: " + error);
 }
