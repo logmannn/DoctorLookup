@@ -3,7 +3,6 @@ import $ from 'jquery';
 // import fetchResults from "../src/main.js";
 
 function getItem(fetchResults, badResults, search, url){
-
   let promise = new Promise(function(resolve, reject) {
     let request = new XMLHttpRequest();
 
@@ -22,8 +21,6 @@ function getItem(fetchResults, badResults, search, url){
 
     let body = JSON.parse(response);
     console.log(body);
-    let i = 0;
-    let productArray = [];
     fetchResults(response, url);
   }, function(error) {
     badResults (error);
